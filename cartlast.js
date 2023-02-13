@@ -1,12 +1,11 @@
-
 const cart = {
 	items: [],
 	totalPrice: 0,
 	count: 0,
 
-	getTotalPrice() {
-		return this.totalPrice;
-	},
+get totalPrice() {
+    return this.calculateItemPrice();
+},
 
 	add(name,price,number = 1) {
 		const product = {name,price,number};
@@ -21,6 +20,7 @@ const cart = {
 	calculateItemPrice() {
     return this.items.reduce((acc, {price, number}) =>
       acc + price * number, 0);
+		
   },
 
 	clear() {
@@ -30,7 +30,8 @@ const cart = {
 		
 	},
 	print() {
-		console.log(`${JSON.stringify(this.items)}`)
+		console.log(`${JSON.stringify(this.items) }`)
+		console.log(`Общая сумма: ${this.totalPrice}`)
 	},
 };
 
@@ -38,5 +39,6 @@ const keys = Object.keys(cart)
 console.log(keys);
 cart.add('Телевизор', 15600, 2);
 cart.add('Холодильник', 100000, 5);
-cart.clear()
+// cart.clear()//
+
 cart.print();
